@@ -8,7 +8,7 @@ html, body {
     background-color: #EEF5FF;
     color: #092D58;
   }
-
+  
 h1, h2, h3, h4, h5, h6, p {
     margin: 0;
     padding: 0;
@@ -18,7 +18,8 @@ h1, h2, h3, h4, h5, h6, p {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    
+
+      
     nav {
         height: 200px;
         padding: 0 1rem;
@@ -57,89 +58,135 @@ h1, h2, h3, h4, h5, h6, p {
 
     form {
         position: absolute;
+        z-index: 1;
         left: 50%;
         top: 15%;
         transform: translateX(-50%);
         flex-grow: 1;
         display: flex;
+        width: 80%;
         flex-direction: column;
-        min-width: 335px;
-        padding: 35px 25px 30px 25px;
+        padding: 35px 25px;
         border-radius: 10px;
         background-color: #FFFFFF;
         box-shadow: 0px 10px 20px -10px rgba(185, 185, 185, 0.5); 
 
-            .form-header {
-                display: flex;
-                flex-direction: column;
-                gap: 0.6rem;
-                margin-bottom: 1rem;
+        .form-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+            padding-right: 120px;
 
-                h1 {
-                    font-size: 1.6rem;
-                    color: #092D58;
-                }
-
-                h2 {
-                    color: #CDCED2;
-                    font-weight: 400;
-                    font-size: 1.2rem;
-                    line-height: 1.3;
-                }
+            h1 {
+                font-size: 1.6rem;
+                color: #092D58;
             }
 
-            .form-inputs {
+            h2 {
+                color: #CDCED2;
+                font-weight: 400;
+                font-size: 1.2rem;
+                line-height: 1.3;
+            }
+        }
+
+        .form-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            .input-container {
                 display: flex;
                 flex-direction: column;
 
-                    input {
-                        padding: 0.7rem 1rem;
-                        border: 1px solid gray;
-                        border-radius: 5px;
-                        margin-bottom: 15px;
-                        font-size: 1rem;
+                .label-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 0.4rem;
+
+                    .user-input-missing-message {
+                        color: #FF0000;
+                        font-size: 0.9rem;
                     }
-        
-                    label {
-                        margin-bottom: 3px;
-                    }
+                }
+
+                
+                .red-border {
+                    border: 1px solid red;
+                }
+                
+                .green-border {
+                    border: 1px solid green;
+                }
+                
+                input {
+                    padding: 0.7rem 1rem;
+                    border: 1px solid gray;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                }
             }
+        }
     }
 
     footer {
         position: fixed;
         bottom: 0;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 1rem;
         height: 90px;
         background-color: #FFFFFF;
         box-shadow: 0px -10px 10px -10px rgba(185, 185, 185, 0.5);
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        button {
-            padding: 15px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            color: #FFFFFF;
-            background-color: #00214C;
-        }
+        .footer-container {
+            width: 80%;
 
-        .next-step-btn {
-            margin-left: auto;
-        }
-
-        .step-change-btns-container {
-            width: 100%;
-            display: flex;
+            .form-buttons {
+                display: flex;
+                align-items: center;
+                margin: 0 auto;
+    
+                .next-step-btn,
+                .previous-step-btn {
+                    padding: 0.7rem 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                    background-color: #00214C;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                }
+    
+                .next-step-btn {
+                    margin-left: auto;
+                }
+    
+                .previous-step-btn {
+                    background-color: #FFFFFF;
+                    color: #00214C;
+                }
+    
+                .disabled {
+                    background-color: #CDCED2;
+                    color: rgb(109, 109, 109);
+                    cursor: not-allowed;
+                    font-weight: 700;
+                }
+            }
         }
     }
-
 }
+
+// Utilities
+
+
+
+// Media Queries
 
 @media (min-width: 1440px) {
     .app {
