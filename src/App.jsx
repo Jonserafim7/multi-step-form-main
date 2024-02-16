@@ -6,6 +6,7 @@ import './App.scss'
 import Nav from './components/Nav'
 import StepOneForm from './components/StepOneForm'
 import StepTwoForm from './components/StepTwoForm'
+import StepThreeForm from './components/StepThreeForm'
 import Footer from './components/Footer'
 
 function App() {
@@ -16,19 +17,26 @@ function App() {
     name: '',
     email: '',
     phone: '',
-    planBilling: {monthly: true, yearly: false},
     plan: 'Arcade',
-    addOns: {}
+    planBilling: {
+      monthly: true, 
+      yearly: false
+    },
+    addOn: [
+      {
+        name: 'Online Service',
+        isChecked: false
+      },
+      {
+        name: 'Larger Storage',
+        isChecked: false
+      },
+      {
+        name: 'Customizable Profile',
+        isChecked: false
+      }
+    ]
   })
-  
-
-  function handleNextStep() {
-    setStep(prevStep => prevStep + 1)
-  }
-
-  function handlePreviousStep() {
-    setStep(prevStep => prevStep - 1)
-  }
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -36,6 +44,33 @@ function App() {
       ...prevData,
       [name]: value
     }))
+  }
+
+  function handleCheckedAddOn(event, index) {
+    const { checked } = event.target
+    setUserData(prevData => {
+      const newAddOn = prevData.addOn.map((addOn, i) => {
+        if (i === index) {
+          return {
+            ...addOn,
+            isChecked: checked
+          }
+        }
+        return addOn
+      })
+      return {
+        ...prevData,
+        addOn: newAddOn
+      }
+    })
+  }
+
+  function handleNextStep() {
+    setStep(prevStep => prevStep + 1)
+  }
+
+  function handlePreviousStep() {
+    setStep(prevStep => prevStep - 1)
   }
 
   function validadeName(name) {
@@ -91,6 +126,18 @@ function App() {
           userData={userData}
           setUserData={setUserData}
           handleChange={handleChange}
+        />
+      }
+
+      {step === 3 &&
+        <StepThreeForm 
+          step={step} 
+          userData={userData}
+          setUserData={setUserData}
+          plans={plans}
+          addOns={addOns}
+          handleChange={handleChange}
+          handleCheckedAddOn={handleCheckedAddOn}
         />
       }
       

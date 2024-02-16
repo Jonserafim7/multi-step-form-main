@@ -36,7 +36,7 @@ export const addOns = [
       yearlyPrice: 20
     },
     {
-      name: 'Customizable profile',
+      name: 'Customizable Profile',
       description: 'Custom theme on your profile',
       monthlyPrice: 2,
       yearlyPrice: 20

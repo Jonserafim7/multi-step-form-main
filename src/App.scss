@@ -213,6 +213,42 @@ h1, h2, h3, h4, h5, h6, p {
         }
     }
 
+    .step-3-form {
+        .add-ons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        
+            .add-on {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                padding: 20px;
+                gap: 20px;
+                border: 1px solid #D9D9DB;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+            .add-on-highlight {
+                background-color: #F8F9FE;
+                border: 1px solid #544C95;
+            }
+
+            .add-on-description {
+                color: #9A9A9B;
+                margin-top: 2px;  
+            }
+
+            .add-on-price {
+                color: #483FFA;
+                font-weight: 500;
+                margin-left: auto;
+            }
+        }
+        
+    }
+
     footer {
         position: fixed;
         bottom: 0;

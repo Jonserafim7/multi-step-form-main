@@ -43,9 +43,11 @@ export default function StepTwoForm(props) {
                             <img src={plan.icon}/>
 
                             <div className='plan-info'>
+                                <div>
                                 <h3>{plan.name}</h3>
                                 <p>${props.userData.planBilling.monthly ? `${plan.monthlyPrice}/mo` : `${plan.yearlyPrice}/yr`}</p>
-                                {props.userData.planBilling.yearly && <p className="yearly-bonus">{plan.yearlyBonus} months free</p>}
+
+                                </div>
                             </div>
                             
                             <input 
