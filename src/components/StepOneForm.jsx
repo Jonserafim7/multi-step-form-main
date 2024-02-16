@@ -3,8 +3,6 @@ import { FaRegCheckCircle } from "react-icons/fa";
 
 export default function StepOneForm(props) {
 
-    const [isInputSelected, setIsInputSelected] = useState(false);
-
     function handleSubmit(event) {
         event.preventDefault()
     }
@@ -26,7 +24,7 @@ export default function StepOneForm(props) {
                     <div className='label-container'>
                         <label htmlFor='name'>Name</label>
                         {props.validadeName(props.userData.name) === false &&  props.userData.name != '' ?
-                        <p className='user-input-missing-message'>Please enter a valid name</p> : ''}
+                        <p className='validation-error-message'>Please enter a valid name</p> : ''}
                         {props.validadeName(props.userData.name) &&  props.userData.name != '' ?
                         <FaRegCheckCircle /> : ''}
                     </div>
@@ -39,8 +37,6 @@ export default function StepOneForm(props) {
                         value={props.userData.name}
                         id={`step-${props.step}-name`}
                         onChange={(event) => {props.handleChange(event)}}
-                        onFocus={() => setIsInputSelected(true)} // Set isInputSelected to true when the input field is selected
-                        onBlur={() => setIsInputSelected(false)} // Set isInputSelected to false when the input field is deselected   
                         />
                 </div>
 
@@ -48,7 +44,7 @@ export default function StepOneForm(props) {
                     <div className='label-container'>
                         <label htmlFor='email'>Email Adress</label>
                         {props.validateEmail(props.userData.email) === false &&  props.userData.email != '' ?
-                        <p className='user-input-missing-message'>Please enter a valid email</p> : ''}
+                        <p className='validation-error-message'>Please enter a valid email</p> : ''}
                         {props.validateEmail(props.userData.email) &&  props.userData.email != '' ?
                         <FaRegCheckCircle /> : ''}
                     </div>
@@ -69,7 +65,7 @@ export default function StepOneForm(props) {
                     <div className='label-container'>
                         <label htmlFor='phone'>Phone Number</label>
                         {props.validadePhoneNumber(props.userData.phone) === false &&  props.userData.phone != '' ?
-                        <p className='user-input-missing-message'>Please enter a valid phone</p> : ''}
+                        <p className='validation-error-message'>Please enter a valid phone</p> : ''}
                         {props.validadePhoneNumber(props.userData.phone) &&  props.userData.phone != '' ?
                         <FaRegCheckCircle /> : ''}
                     </div>

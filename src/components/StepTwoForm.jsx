@@ -8,7 +8,7 @@ export default function StepTwoForm(props) {
         event.preventDefault()
     }
 
-    function handlePlanChange(event) {
+    function handlePlanChange() {
         
         props.setUserData(prevData => {
             if (props.userData.planBilling.monthly) {
@@ -44,7 +44,8 @@ export default function StepTwoForm(props) {
 
                             <div className='plan-info'>
                                 <h3>{plan.name}</h3>
-                                <p>${plan.monthlyPrice}/mo</p>
+                                <p>${props.userData.planBilling.monthly ? `${plan.monthlyPrice}/mo` : `${plan.yearlyPrice}/yr`}</p>
+                                {props.userData.planBilling.yearly && <p className="yearly-bonus">{plan.yearlyBonus} months free</p>}
                             </div>
                             
                             <input 
