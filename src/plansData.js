@@ -2,21 +2,21 @@ export const plans = [
     {
       name: 'Arcade',
       icon: '/src/assets/images/icon-arcade.svg',
-      monthlyRrice: 9,
+      monthlyPrice: 9,
       yearlyPrice: 90,
       yearlyBonus: 2
     },
     {
       name:'Advanced',
       icon: '/src/assets/images/icon-advanced.svg',
-      monthlyRrice: 12,
+      monthlyPrice: 12,
       yearlyPrice: 120,
       yearlyBonus: 2
     },
     {
       name: 'Pro',
       icon: '/src/assets/images/icon-pro.svg',
-      monthlyRrice: 15,
+      monthlyPrice: 15,
       yearlyPrice: 150,
       yearlyBonus: 2
     }

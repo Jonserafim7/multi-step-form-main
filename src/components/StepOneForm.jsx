@@ -11,7 +11,7 @@ export default function StepOneForm(props) {
 
 
     return (
-        <form className='step-1-form'onSubmit={handleSubmit}>
+        <form className='step-1-form' onSubmit={handleSubmit}>
             <div className='form-header'>
                 <h1>Personal Info</h1>
                 <h2>

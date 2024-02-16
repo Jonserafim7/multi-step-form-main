@@ -106,12 +106,11 @@ h1, h2, h3, h4, h5, h6, p {
                     justify-content: space-between;
                     margin-bottom: 0.4rem;
 
-                    .user-input-missing-message {
+                    .user-missing-message {
                         color: #FF0000;
                         font-size: 0.9rem;
                     }
                 }
-
                 
                 .red-border {
                     border: 1px solid red;
@@ -120,13 +119,83 @@ h1, h2, h3, h4, h5, h6, p {
                 .green-border {
                     border: 1px solid green;
                 }
-                
+
                 input {
                     padding: 0.7rem 1rem;
                     border: 1px solid gray;
                     border-radius: 5px;
                     font-size: 1rem;
                 }
+            }
+        }
+    }
+
+    .step-2-form {
+        .plans-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+            
+
+            .plan{
+                display: flex;
+                align-items: center;
+                width: 100%;
+                padding: 20px;
+                gap: 20px;
+                border: 1px solid #D9D9DB;
+                border-radius: 10px;
+                cursor: pointer;
+
+                h3 {
+                    font-size: 1.2rem;
+                    color: #0F1D37;
+                    letter-spacing: -0.5px;
+                }
+
+                p {
+                    color: #CDCED2;
+                    margin-top: 9px ;
+                    letter-spacing: -0.5px;
+                }
+
+                .plan-radio {
+                    visibility: hidden;
+                }
+
+            }
+
+            .plan-highlight {
+                background-color: #F8F9FE;
+                border: 1px solid #544C95;
+            }
+
+        .plan-billing-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background-color: #F8F9FE;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #0F1D37;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            cursor: pointer;
+
+            .monthly-icon,
+            .yearly-icon {
+                font-size: 40px;
+            }
+
+            .fade {
+                color: #CDCED2;
             }
         }
     }

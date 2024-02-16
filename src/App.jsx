@@ -5,6 +5,7 @@ import './App.scss'
 
 import Nav from './components/Nav'
 import StepOneForm from './components/StepOneForm'
+import StepTwoForm from './components/StepTwoForm'
 import Footer from './components/Footer'
 
 function App() {
@@ -15,11 +16,11 @@ function App() {
     name: '',
     email: '',
     phone: '',
-    planType: '',
-    plan: {},
+    planBilling: {monthly: true, yearly: false},
+    plan: 'Arcade',
     addOns: {}
   })
-  const nameRegex = /^[A-Za-z]+$/
+  
 
   function handleNextStep() {
     setStep(prevStep => prevStep + 1)
@@ -68,7 +69,7 @@ function App() {
 }, [userData]);
 
   return (
-    <div className='app'>
+    <div className={`app step${step}`}>
       <Nav 
         step={step} 
       />
@@ -84,13 +85,20 @@ function App() {
           validadePhoneNumber={validatePhoneNumber}
       />
       }
+      {step === 2 &&
+        <StepTwoForm 
+          step={step} 
+          userData={userData}
+          setUserData={setUserData}
+          handleChange={handleChange}
+        />
+      }
       
       <Footer
         step={step}  
         handleNextStep={handleNextStep}
         handlePreviousStep={handlePreviousStep}
         isStepOneComplete={isStepOneComplete}
-        nameRegex={nameRegex}
       />
     </div>
   )
