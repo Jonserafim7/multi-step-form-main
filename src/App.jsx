@@ -9,6 +9,7 @@ import StepTwoForm from './components/StepTwoForm'
 import StepThreeForm from './components/StepThreeForm'
 import StepFourConfirmation from './components/StepFourConfirmation'
 import Footer from './components/Footer'
+import ConfirmationModal from './components/ConfirmationModal'
 
 function App() {
 
@@ -169,7 +170,7 @@ function App() {
         />
       }
 
-      {step === 4 &&
+      {step === 4 && !isPlanConfirmed &&
         <StepFourConfirmation 
           step={step}
           setStep={setStep} 
@@ -178,14 +179,26 @@ function App() {
           addOns={addOns}
         />
       }
+
+      {isPlanConfirmed &&
+        <ConfirmationModal 
+          step={step}
+          userData={userData}
+          setUserData={setUserData}
+          setStep={setStep}
+        />
+      }
       
-      <Footer
+      {!isPlanConfirmed &&
+        <Footer
         step={step}  
         handleNextStep={handleNextStep}
         handlePreviousStep={handlePreviousStep}
         isStepOneComplete={isStepOneComplete}
         handleConfirmation={handleConfirmation}
       />
+      }
+      
     </div>
   )
 }
