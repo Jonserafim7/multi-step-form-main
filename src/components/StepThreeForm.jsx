@@ -12,8 +12,6 @@ export default function StepThreeForm(props) {
 
             <div className="add-ons-container">
                 {props.addOns.map((addOn, index) => {
-                    console.log(props.userData.addOn) 
-                    // console.log(!props.userData.addOn.filter(item => item.name === addOn.name)[0].isChecked)
                     return (
                         
                         <label className={`add-on name:${props.userData.addOn.filter(item => item.name === addOn.name)[0].name} checked:${props.userData.addOn.filter(item => item.name === addOn.name)[0].isChecked}`} key={index} htmlFor={`step-${props.step}-add-on-${index}`}>

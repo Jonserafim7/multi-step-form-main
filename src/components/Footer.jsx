@@ -14,10 +14,10 @@ export default function Footer(props) {
                     </button>}
                     <button 
                         className={props.isStepOneComplete ? 'next-step-btn' : 'next-step-btn disabled'} 
-                        onClick={props.handleNextStep}
+                        onClick={props.step === 4 ? props.handleConfirmation : props.handleNextStep}
                         disabled={!props.isStepOneComplete}
                         > 
-                        Next Step
+                        {props.step === 4 ? 'Confirm' : 'Next Step'}
                     </button> 
                 </div>
             </div>

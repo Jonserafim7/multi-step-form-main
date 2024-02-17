@@ -27,7 +27,7 @@ export default function StepTwoForm(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className={`step-2-form plan:${props.userData.plan} monthly:${props.userData.planBilling.monthly} yearly:${props.userData.planBilling.yearly}`}>
+        <form onSubmit={handleSubmit} className={`step-2-form plan:${props.userData.plan.name} monthly:${props.userData.planBilling.monthly} yearly:${props.userData.planBilling.yearly}`}>
             <div className='form-header'>
                 <h1>Select your plan</h1>
                 <h2>
@@ -38,7 +38,7 @@ export default function StepTwoForm(props) {
             <div className="plans-container">
                 {plans.map((plan, index) => {
                     return (
-                        <label className={props.userData.plan === plan.name ? 'plan plan-highlight' : 'plan'} key={index} htmlFor={`step-${props.step}-plan-${index}`}>
+                        <label className={props.userData.plan.name === plan.name ? 'plan plan-highlight' : 'plan'} key={index} htmlFor={`step-${props.step}-plan-${index}`}>
 
                             <img src={plan.icon}/>
 
@@ -53,10 +53,10 @@ export default function StepTwoForm(props) {
                             <input 
                                 type='radio' 
                                 name='plan' 
-                                value={plan.name}
+                                value={JSON.stringify(plan)}
                                 id={`step-${props.step}-plan-${index}`}
-                                onChange={(event) => {props.handleChange(event)}}
                                 className="plan-radio"
+                                onChange={(event) => {props.handlePlanChange(event)}}
                             />
                         </label>
                     )

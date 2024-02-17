@@ -7,17 +7,24 @@ import Nav from './components/Nav'
 import StepOneForm from './components/StepOneForm'
 import StepTwoForm from './components/StepTwoForm'
 import StepThreeForm from './components/StepThreeForm'
+import StepFourConfirmation from './components/StepFourConfirmation'
 import Footer from './components/Footer'
 
 function App() {
 
   const [step, setStep] = useState(1)
   const [isStepOneComplete, setisStepOneComplete] = useState(false)
+  const [isPlanConfirmed, setisPlanConfirmed] = useState(false)
   const [userData, setUserData] = useState({
     name: '',
     email: '',
     phone: '',
-    plan: 'Arcade',
+    plan: {
+      name: 'Arcade',
+      monthlyPrice: 9,
+      yearlyPrice: 90,
+      yearlyBonus: 2
+    },
     planBilling: {
       monthly: true, 
       yearly: false
@@ -25,18 +32,29 @@ function App() {
     addOn: [
       {
         name: 'Online Service',
-        isChecked: false
+        isChecked: false,
+        monthlyPrice: 1,
+        yearlyPrice: 10
       },
       {
         name: 'Larger Storage',
-        isChecked: false
+        isChecked: false,
+        monthlyPrice: 2,
+        yearlyPrice: 20
       },
       {
         name: 'Customizable Profile',
-        isChecked: false
+        isChecked: false,
+        monthlyPrice: 2,
+        yearlyPrice: 20
       }
     ]
   })
+
+  function handleConfirmation() {
+    setisPlanConfirmed(true)
+    console.log('Plan confirmed')
+  }
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -45,6 +63,16 @@ function App() {
       [name]: value
     }))
   }
+
+  const handlePlanChange = (event) => {
+    const { name, value } = event.target;
+    const selectedPlan = JSON.parse(value); // Assuming the value is a stringified plan object
+
+    setUserData(prevState => ({
+      ...prevState,
+      [name]: selectedPlan
+    }));
+  };
 
   function handleCheckedAddOn(event, index) {
     const { checked } = event.target
@@ -125,7 +153,7 @@ function App() {
           step={step} 
           userData={userData}
           setUserData={setUserData}
-          handleChange={handleChange}
+          handlePlanChange={handlePlanChange}
         />
       }
 
@@ -140,12 +168,23 @@ function App() {
           handleCheckedAddOn={handleCheckedAddOn}
         />
       }
+
+      {step === 4 &&
+        <StepFourConfirmation 
+          step={step}
+          setStep={setStep} 
+          userData={userData}
+          plans={plans}
+          addOns={addOns}
+        />
+      }
       
       <Footer
         step={step}  
         handleNextStep={handleNextStep}
         handlePreviousStep={handlePreviousStep}
         isStepOneComplete={isStepOneComplete}
+        handleConfirmation={handleConfirmation}
       />
     </div>
   )
