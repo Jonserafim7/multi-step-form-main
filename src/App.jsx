@@ -55,6 +55,7 @@ function App() {
   function handleConfirmation() {
     setisPlanConfirmed(true)
     console.log('Plan confirmed')
+    console.log('userData', userData)
   }
 
   function handleChange(event) {
