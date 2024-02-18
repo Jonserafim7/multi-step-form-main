@@ -1,7 +1,7 @@
 import React,{ useState, useEffect } from 'react'
 import { plans, addOns } from './plansData'
 
-import './App.scss'
+import './MultiStepForm.scss'
 
 import Nav from './components/Nav'
 import StepOneForm from './components/StepOneForm'
@@ -11,7 +11,7 @@ import StepFourConfirmation from './components/StepFourConfirmation'
 import Footer from './components/Footer'
 import ConfirmationModal from './components/ConfirmationModal'
 
-function App() {
+export default function MultiStepForm() {
 
   const [step, setStep] = useState(1)
   const [isStepOneComplete, setisStepOneComplete] = useState(false)
@@ -66,34 +66,7 @@ function App() {
     }))
   }
 
-  const handlePlanChange = (event) => {
-    const { name, value } = event.target;
-    const selectedPlan = JSON.parse(value); // Assuming the value is a stringified plan object
 
-    setUserData(prevState => ({
-      ...prevState,
-      [name]: selectedPlan
-    }));
-  };
-
-  function handleCheckedAddOn(event, index) {
-    const { checked } = event.target
-    setUserData(prevData => {
-      const newAddOn = prevData.addOn.map((addOn, i) => {
-        if (i === index) {
-          return {
-            ...addOn,
-            isChecked: checked
-          }
-        }
-        return addOn
-      })
-      return {
-        ...prevData,
-        addOn: newAddOn
-      }
-    })
-  }
 
   function handleNextStep() {
     setStep(prevStep => prevStep + 1)
@@ -134,7 +107,7 @@ function App() {
 }, [userData]);
 
   return (
-    <div className={`app step${step}`}>
+    <div className={`MultiStepForm step${step}`}>
       <Nav 
         step={step} 
       />
@@ -155,7 +128,7 @@ function App() {
           step={step} 
           userData={userData}
           setUserData={setUserData}
-          handlePlanChange={handlePlanChange}
+          plans={plans}
         />
       }
 
@@ -167,7 +140,6 @@ function App() {
           plans={plans}
           addOns={addOns}
           handleChange={handleChange}
-          handleCheckedAddOn={handleCheckedAddOn}
         />
       }
 
@@ -203,5 +175,3 @@ function App() {
     </div>
   )
 }
-
-export default App

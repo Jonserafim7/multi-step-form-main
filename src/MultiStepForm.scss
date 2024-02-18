@@ -1,0 +1,623 @@
+// Variables---------------------------------
+
+// colors
+$Marineblue: #02295a;
+$Purplishblue: #473dff;
+$Ultraviolet: #544B9E;
+$Pastelblue: #adbeff;
+$Lightblue: #bfe2fd;
+$Strawberryred: #ed3548;
+$Coolgray: #9699ab;
+$Lightgray: #d6d9e6;
+$Magnolia: #f0f6ff;
+$Alabaster: #fafbff;
+$White: #ffffff;
+
+// mixins--------------------------------- 
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-align-center {
+    display: flex;
+    align-items: center;
+} 
+
+@mixin flex-align-center-justify-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-align-center-justify-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin form-container {
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    z-index: 1;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 35px 25px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 10px 20px -10px rgba(185, 185, 185, 0.5);
+}
+
+@mixin form-header {
+    @include flex-column;
+    gap: 0.6rem;
+    width: 80%;
+    margin-bottom: 1rem;
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        color: $Coolgray;
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+}
+
+@mixin form-inputs-container {
+    @include flex-column;
+    gap: 1rem;
+}
+
+@mixin form-input {
+    border: 1px solid $Coolgray;
+    border-radius: 10px;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: "Ubuntu", sans-serif;
+}
+
+@mixin highlight-selected-input {
+    background-color: $Alabaster;
+    border: 1px solid $Ultraviolet;
+}
+
+// Global Styles---------------------------------
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Ubuntu", sans-serif;
+    margin: 0;
+    background-color: $Magnolia;
+    color: $Marineblue;
+  }
+  
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+    letter-spacing: -0.6px;
+}
+
+// App Styles---------------------------------
+
+.MultiStepForm {
+    @include flex-column;
+    height: 100vh;
+      
+    nav {
+        height: 200px;
+        padding: 0 1rem;
+        background: url("./assets/images/bg-sidebar-mobile.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        .nav-container {
+            display: flex;
+            position: relative;
+            justify-content: center;
+            gap: 1rem;
+            top: 2.5rem;
+            
+            .nav-step-text {
+                display: none;
+            }
+        }
+
+        .step-count {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            color: white;
+            border: white 1px solid;
+        }
+
+        .highlight-step-count {
+            background-color: #C0E5F4;
+            color: #00214C;
+        }
+    }
+
+    .step-1-form {
+        @include form-container;
+
+        .form-header {
+            @include form-header;
+        }
+
+        .form-inputs-container {
+            @include form-inputs-container;
+
+            .input-elements {
+                
+                .label-container {
+                    @include flex-align-center-justify-between;
+                    margin-bottom: 5px;
+    
+                    .validation-error-message {
+                        color: $Strawberryred;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                .form-input {
+                    @include form-input;
+                }
+                
+                .red-border {
+                    @include form-input;
+                    border: $Strawberryred 1px solid;
+                }
+    
+                input:focus {
+                    @include highlight-selected-input;
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    .step-2-form {
+        @include form-container;
+
+        .form-header {
+            @include form-header;
+        }
+
+        .form-inputs-container {
+            @include form-inputs-container;
+        
+
+            .form-input {
+                @include form-input;
+                @include flex-align-center;
+                gap: 1rem;
+                padding: 1.5rem 1rem;
+            }
+
+            .plan-info {
+                @include flex-column;
+                gap: 0.3rem;
+
+                .plan-price {
+                    color: $Coolgray;
+                }
+            }
+
+            .plan-radio {
+                visibility: hidden;
+            }
+
+            .selected {
+                @include highlight-selected-input;
+            }
+
+        }
+        
+        .plan-billing-selector {
+            @include form-input;
+            @include flex-align-center-justify-center;
+            gap: 1.25rem;
+            border: none;
+            background-color: $Alabaster;
+            margin-top: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+
+            .monthly-icon,
+            .yearly-icon {
+                font-size: 2.5rem;
+            }
+
+            .fade {
+                color: $Coolgray;
+            }
+        }
+    }
+
+    .step-3-form {
+        @include form-container;
+
+        .form-header {
+            @include form-header;
+        }
+
+        .form-inputs-container {
+            @include form-inputs-container;
+        
+            .add-on {
+                @include form-input;
+                @include flex-align-center-justify-between;
+                gap: 1rem;
+            
+
+                .add-on-description {
+                    color: $Coolgray;
+                    margin-top: 2px;  
+                }
+
+                .add-on-price {
+                    color: $Ultraviolet;
+                    font-weight: 500;
+                    margin-left: auto;
+                }
+            }
+
+            .selected {
+                @include highlight-selected-input;
+            }
+        }
+    }
+
+    .step-4-confirmation {
+        @include form-container;
+
+        .form-header {
+            @include form-header;
+        }
+
+        .confirmation-container {
+            @include flex-column;
+            background-color: $Alabaster;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+
+            .plan-confirmation-container {
+                @include flex-align-center-justify-between;
+                border-bottom: 1px solid $Lightgray;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+
+                p {
+                    margin-bottom: 5px;
+                }
+
+                button {
+                    background-color: transparent;
+                    border: none;
+                    padding: 0;
+                    color: $Coolgray;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
+                button:hover {
+                    color: $Ultraviolet;
+                }
+
+                .confirm-plan-price {
+                    font-weight: 700;
+                }
+            }
+
+            .add-on-confirmation-container {
+                @include flex-column;
+                gap: 0.5rem;
+
+                .confirm-add-on {
+                    @include flex-align-center-justify-between;
+
+                    .confirm-add-on-name{
+                        color: $Coolgray;
+                    }
+
+                    .confirm-add-on-price {
+                        font-weight: 500;
+                    }
+                }
+            }
+            
+        }
+
+        .confirm-total {
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                color: $Coolgray;
+            }
+
+            .total-price {
+                font-weight: 700;
+                color: $Purplishblue;
+            }
+        }
+    }
+
+    footer {
+        @include flex-align-center-justify-center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 90px;
+        background-color: $White;
+        box-shadow: 0px -10px 10px -10px rgba(185, 185, 185, 0.5);
+        padding: 20px 0;
+
+        .footer-container {
+            width: 80%;
+
+            .form-buttons {
+                @include flex-align-center;
+                margin: 0 auto;
+    
+                .next-step-btn,
+                .previous-step-btn {
+                    @include form-input;
+                    width: unset;
+                    padding: 1rem 2rem;
+                    border: none;
+                    background-color: $Marineblue;
+                    color: $White;
+                    font-size: 1.1rem;
+                }
+    
+                .next-step-btn {
+                    margin-left: auto;
+                }
+    
+                .previous-step-btn {
+                    background-color: transparent;
+                    color: $Coolgray;
+                }
+    
+                .disabled-btn {
+                    background-color: #CDCED2;
+                    color: rgb(109, 109, 109);
+                    cursor: not-allowed;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+    .confirmation-modal {
+        @include form-container;
+        text-align: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 4rem 2rem;
+
+        img {
+            width: 60px;
+        }
+
+        p {
+            color: #9A9A9B;
+            line-height: 1.3;
+            font-size: 1.1rem;
+        }
+    }
+
+}
+
+// Utilities
+
+
+
+// Media Queries
+
+
+@media (min-width: 1440px) {
+    #root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+    }
+
+
+    .MultiStepForm {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 80% 20%;
+        grid-template-areas: 
+            "nav form"
+            "nav footer";
+
+        height: 75%;
+        width: 70%;
+        background-color: $White;
+        box-shadow: 0px 10px 20px -10px rgba(185, 185, 185, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+
+        nav {
+            grid-area: nav;
+            height: unset;
+            padding: 50px 20px;
+            background: url("./assets/images/bg-sidebar-desktop.svg");
+            background-size: cover;
+            background-repeat: no-repeat;
+    
+            .nav-container {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                justify-content: center;
+                gap: 1rem;
+                top: 2.5rem;
+                
+                .nav-step-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 1.2rem;
+
+                    .nav-step-text {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.3rem;
+
+                        .step-counter {
+                            color: $Lightgray;
+                        }
+
+                        .step-description {
+                            color: $White;
+                        }	
+                    }
+                }
+            }
+    
+            .step-count {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50px;
+                font-size: 1rem;
+                color: white;
+                border: white 1px solid;
+            }
+    
+            .highlight-step-count {
+                background-color: #C0E5F4;
+                color: #00214C;
+            }
+        }
+    
+        .step-1-form {
+            position: unset;
+            left: unset;
+            top: unset;
+            z-index: unset;
+            transform: unset;
+            display: flex;
+            flex-direction: column;
+            width: unset;
+            padding: 30px 70px;
+            border-radius: 10px;
+            background-color: unset;
+            box-shadow: unset;
+    
+            .form-header {
+                @include form-header;
+            }
+    
+            .form-inputs-container {
+                @include form-inputs-container;
+    
+                .input-elements {
+                    
+                    .label-container {
+                        @include flex-align-center-justify-between;
+                        margin-bottom: 5px;
+        
+                        .validation-error-message {
+                            color: $Strawberryred;
+                            font-size: 0.9rem;
+                        }
+                    }
+    
+                    .form-input {
+                        @include form-input;
+                    }
+                    
+                    .red-border {
+                        @include form-input;
+                        border: $Strawberryred 1px solid;
+                    }
+        
+                    input:focus {
+                        @include highlight-selected-input;
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        footer {
+            justify-content: end;
+            grid-area: footer;
+            position: unset;
+            bottom: unset;
+            width: unset;
+            height: unset;
+            background-color: unset;
+            box-shadow: unset;
+            padding: 0 70px;
+    
+            .footer-container {
+                width: unset;
+    
+                .form-buttons {
+                    @include flex-align-center;
+                    margin: 0 auto;
+        
+                    .next-step-btn,
+                    .previous-step-btn {
+                        @include form-input;
+                        width: unset;
+                        padding: 1rem 2rem;
+                        border: none;
+                        background-color: $Marineblue;
+                        color: $White;
+                        font-size: 1.1rem;
+                    }
+        
+                    .next-step-btn {
+                        margin-left: auto;
+                    }
+        
+                    .previous-step-btn {
+                        background-color: transparent;
+                        color: $Coolgray;
+                    }
+        
+                    .disabled-btn {
+                        background-color: #CDCED2;
+                        color: rgb(109, 109, 109);
+                        cursor: not-allowed;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
