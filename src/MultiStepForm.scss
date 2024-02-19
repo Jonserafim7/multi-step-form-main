@@ -226,10 +226,16 @@ h1, h2, h3, h4, h5, h6, p {
 
             .plan-radio {
                 visibility: hidden;
+                display: none
             }
 
             .selected {
                 @include highlight-selected-input;
+            }
+
+            .display-none {
+                display: none;
+                visibility: hidden;
             }
 
         }
@@ -449,11 +455,10 @@ h1, h2, h3, h4, h5, h6, p {
         width: 100%;
     }
 
-
     .MultiStepForm {
         display: grid;
         grid-template-columns: 30% 70%;
-        grid-template-rows: 80% 20%;
+        grid-template-rows: 85% 15%;
         grid-template-areas: 
             "nav form"
             "nav footer";
@@ -468,18 +473,18 @@ h1, h2, h3, h4, h5, h6, p {
         nav {
             grid-area: nav;
             height: unset;
-            padding: 50px 20px;
+            padding: 50px 30px;
             background: url("./assets/images/bg-sidebar-desktop.svg");
             background-size: cover;
             background-repeat: no-repeat;
+            border-radius: 10px;
     
             .nav-container {
                 display: flex;
                 flex-direction: column;
-                position: relative;
+                position: unset;
                 justify-content: center;
                 gap: 1rem;
-                top: 2.5rem;
                 
                 .nav-step-container {
                     display: flex;
@@ -492,11 +497,11 @@ h1, h2, h3, h4, h5, h6, p {
                         gap: 0.3rem;
 
                         .step-counter {
-                            color: $Lightgray;
+                            color: $Pastelblue;
                         }
 
                         .step-description {
-                            color: $White;
+                            color: $Alabaster;
                         }	
                     }
                 }
@@ -521,103 +526,117 @@ h1, h2, h3, h4, h5, h6, p {
         }
     
         .step-1-form {
+            grid-area: form;
+            padding: 0px 70px;
+            align-self: center;
             position: unset;
             left: unset;
             top: unset;
             z-index: unset;
             transform: unset;
-            display: flex;
-            flex-direction: column;
             width: unset;
-            padding: 30px 70px;
-            border-radius: 10px;
-            background-color: unset;
             box-shadow: unset;
-    
+        }
+
+        .step-2-form {
+            grid-area: form;
+            padding: 0px 70px;
+            align-self: center;
+            position: unset;
+            left: unset;
+            top: unset;
+            z-index: unset;
+            transform: unset;
+            display: unset;
+            flex-direction: unset;
+            width: unset;
+            box-shadow: unset;
+
             .form-header {
-                @include form-header;
+                margin-bottom: 30px;
             }
     
             .form-inputs-container {
-                @include form-inputs-container;
+                flex-direction: row;
     
-                .input-elements {
-                    
-                    .label-container {
-                        @include flex-align-center-justify-between;
-                        margin-bottom: 5px;
-        
-                        .validation-error-message {
-                            color: $Strawberryred;
-                            font-size: 0.9rem;
-                        }
-                    }
+                .form-input {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                }
     
-                    .form-input {
-                        @include form-input;
-                    }
-                    
-                    .red-border {
-                        @include form-input;
-                        border: $Strawberryred 1px solid;
-                    }
-        
-                    input:focus {
-                        @include highlight-selected-input;
-                        outline: none;
-                    }
+                .plan-info {
+                    margin-top: 30px;
                 }
             }
         }
 
-        footer {
-            justify-content: end;
-            grid-area: footer;
+        .step-3-form {
+            grid-area: form;
+            padding: 0px 70px;
+            align-self: center;
             position: unset;
-            bottom: unset;
+            left: unset;
+            top: unset;
+            z-index: unset;
+            transform: unset;
+            display: unset;
+            flex-direction: unset;
             width: unset;
-            height: unset;
-            background-color: unset;
             box-shadow: unset;
-            padding: 0 70px;
     
-            .footer-container {
-                width: unset;
-    
-                .form-buttons {
-                    @include flex-align-center;
-                    margin: 0 auto;
-        
-                    .next-step-btn,
-                    .previous-step-btn {
-                        @include form-input;
-                        width: unset;
-                        padding: 1rem 2rem;
-                        border: none;
-                        background-color: $Marineblue;
-                        color: $White;
-                        font-size: 1.1rem;
-                    }
-        
-                    .next-step-btn {
-                        margin-left: auto;
-                    }
-        
-                    .previous-step-btn {
-                        background-color: transparent;
-                        color: $Coolgray;
-                    }
-        
-                    .disabled-btn {
-                        background-color: #CDCED2;
-                        color: rgb(109, 109, 109);
-                        cursor: not-allowed;
-                        font-weight: 700;
-                    }
-                }
+            .form-header {
+                margin-bottom: 30px;
             }
         }
-        
+
+        .step-4-confirmation {
+            grid-area: form;
+            align-self: center;
+            padding: 0px 70px;
+            position: unset;
+            left: unset;
+            top: unset;
+            z-index: unset;
+            transform: unset;
+            width: unset;
+            box-shadow: unset;
+
+            .form-header {
+                margin-bottom: 40px;
+            }
+        }
+
+        footer {
+            grid-area: footer;
+            align-self: center;
+            position: unset;
+            box-shadow: unset;
+            padding: 0 70px;
+            width: 100%;
+    
+            .footer-container {
+                width: 100%;
+            }
+        }
+
+        .confirmation-modal {
+            grid-row: 1 / -1;
+            align-self: center;
+            position: unset;
+            left: unset;
+            top: unset;
+            z-index: unset;
+            transform: unset;
+            width: unset;
+            padding: 50px 70px;
+            box-shadow: unset;
+
+            img {
+                width: 80px;
+                margin-bottom: 20px;
+            }
+        }
     }
 }
 

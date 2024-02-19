@@ -13,7 +13,7 @@ export default function Nav(props) {
                     </div>
                     <div className='nav-step-text'>
                         <h3 className='step-counter'>Step 1</h3>
-                        <h3 className='step-description'>Your Personal Info</h3>
+                        <h3 className='step-description'>Your Info</h3>
                     </div>
                 </div>
 
