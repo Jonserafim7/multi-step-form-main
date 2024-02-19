@@ -1,5 +1,7 @@
 import React,{ useState, useEffect } from 'react'
 import { plans, addOns } from './plansData'
+import { userPlansCollection } from '/src/firebase.js'
+import { onSnapshot, addDoc, deleteDoc, doc, collection } from 'firebase/firestore'
 
 import './MultiStepForm.scss'
 
@@ -10,6 +12,7 @@ import StepThreeForm from './components/StepThreeForm'
 import StepFourConfirmation from './components/StepFourConfirmation'
 import Footer from './components/Footer'
 import ConfirmationModal from './components/ConfirmationModal'
+// import { s } from 'vite/dist/node/types.d-jgA8ss1A'
 
 export default function MultiStepForm() {
 
@@ -52,10 +55,15 @@ export default function MultiStepForm() {
     ]
   })
 
-  function handleConfirmation() {
+  async function handleConfirmation() {
     setisPlanConfirmed(true)
     console.log('Plan confirmed')
-    console.log('userData', userData)
+    try {
+      await addDoc(userPlansCollection, userData);
+      console.log("User data added to Firestore");
+    } catch (error) {
+      console.error("Error adding user data to Firestore: ", error);
+    }
   }
 
   function handleChange(event) {
@@ -65,8 +73,6 @@ export default function MultiStepForm() {
       [name]: value
     }))
   }
-
-
 
   function handleNextStep() {
     setStep(prevStep => prevStep + 1)
